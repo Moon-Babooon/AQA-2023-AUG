@@ -1,0 +1,5 @@
+input,expected
+-- this test verifies JUnit external data sources
+test,TEST
+tEst,TEST
+Java,JAVA

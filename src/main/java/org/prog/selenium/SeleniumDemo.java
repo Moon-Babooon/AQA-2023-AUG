@@ -5,7 +5,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class SeleniumDemo {
@@ -23,12 +26,20 @@ public class SeleniumDemo {
             //work with google.com
             WebElement inputField = webDriver.findElement(By.name("q"));
             inputField.sendKeys("Christian Bale");
-            Thread.sleep(2500);
+            inputField.click();
+
+            new WebDriverWait(webDriver, Duration.ofSeconds(5L))
+                    .until(ExpectedConditions.attributeToBe(inputField, "aria-expanded", "true"));
+            List<WebElement> searchDropDown = new WebDriverWait(webDriver, Duration.ofSeconds(30L))
+                    .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//ul[@role='listbox']")));
+            if (searchDropDown.size() < 2) {
+                throw new RuntimeException("This is not working");
+            }
             inputField.sendKeys(Keys.ENTER);
-            Thread.sleep(2500);
-            List<WebElement> searchHeaders = webDriver.findElements(By.xpath("//a/h3"));
-            System.out.println("Christian Bale is found: " +
-                    searchHeaders.stream().anyMatch(webElement -> webElement.getText().contains("Christian Bale")));
+            Boolean searchOK = new WebDriverWait(webDriver, Duration.ofSeconds(30L))
+                    .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//a/h3"),
+                            "Christian Bale"));
+            System.out.println("Christian Bale is found: " + searchOK);
         } finally {
             if (webDriver != null) {
                 webDriver.quit();
