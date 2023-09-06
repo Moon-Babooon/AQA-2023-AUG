@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Selenium" verbose="1">
-    <test name="Google Regression">
+    <test name="Rozetka Regression">
         <classes>
-            <class name="org.prog.GoogleTests"/>
+            <class name="org.prog.homework.RozetkaTest"/>
         </classes>
     </test>
 </suite>
