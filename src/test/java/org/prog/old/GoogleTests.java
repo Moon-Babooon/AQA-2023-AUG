@@ -1,4 +1,4 @@
-package org.prog;
+package org.prog.old;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

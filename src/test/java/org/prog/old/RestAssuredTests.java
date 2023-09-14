@@ -1,4 +1,4 @@
-package org.prog;
+package org.prog.old;
 
 import io.restassured.RestAssured;
 import org.prog.dto.ResultsDto;

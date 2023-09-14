@@ -1,4 +1,4 @@
-package org.prog;
+package org.prog.old;
 
 import lombok.SneakyThrows;
 import org.testng.annotations.Test;

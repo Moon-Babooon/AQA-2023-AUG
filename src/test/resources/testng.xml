@@ -3,7 +3,7 @@
 <suite name="Selenium" verbose="1">
     <test name="Google Regression">
         <classes>
-            <class name="org.prog.GoogleTests"/>
+            <class name="org.prog.cucumber.CucumberTestRunner"/>
         </classes>
     </test>
 </suite>

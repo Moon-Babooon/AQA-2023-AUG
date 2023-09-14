@@ -1,4 +1,4 @@
-package org.prog;
+package org.prog.old;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.*;
