@@ -1,4 +1,4 @@
-package org.prog.dto;
+package org.prog.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NameDto {
-    private String title;
-    private String first;
-    private String last;
+public class CoordinatesDto {
+
+    private String latitude;
+    private String longitude;
+
 }

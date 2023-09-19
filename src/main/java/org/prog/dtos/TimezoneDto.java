@@ -1,4 +1,4 @@
-package org.prog.dto;
+package org.prog.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CoordinatesDto {
+public class TimezoneDto {
 
-    private String latitude;
-    private String longitude;
+    private String offset;
+    private String description;
 
 }

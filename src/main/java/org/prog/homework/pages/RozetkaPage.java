@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -19,22 +18,19 @@ public class RozetkaPage extends AbstractPage{
     }
 
     public void enterSearchValue(String searchFor) {
-
         WebElement inputField = driver.findElement(INPUT_FIELD_LOCATOR);
         inputField.sendKeys(searchFor);
         WebElement searchButton = driver.findElement(SEARCH_BUTTON_LOCATOR);
         searchButton.click();
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10L));
     }
 
     public boolean numberOfResultsToBeMoreThan(int productCount) {
-
         new WebDriverWait(driver, Duration.ofSeconds(10L))
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PRODUCTS_LOCATOR));
         List<WebElement> productIcons = driver.findElements(PRODUCTS_LOCATOR);
         boolean resultsAreVisible = productIcons.size() > productCount;
         return resultsAreVisible;
-
     }
 
 }

@@ -1,4 +1,4 @@
-package org.prog.homework;
+package old;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

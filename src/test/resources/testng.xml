@@ -3,7 +3,7 @@
 <suite name="Selenium" verbose="1">
     <test name="Rozetka Regression">
         <classes>
-            <class name="org.prog.homework.RozetkaTest"/>
+            <class name="homework.cucumber.CucumberTestRunner"/>
         </classes>
     </test>
 </suite>

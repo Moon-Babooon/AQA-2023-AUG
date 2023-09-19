@@ -17,4 +17,8 @@ public abstract class AbstractPage {
         driver.get(url);
     }
 
+    public void quitDriver() {
+        driver.quit();
+    }
+
 }

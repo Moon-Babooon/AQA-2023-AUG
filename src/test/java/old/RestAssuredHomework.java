@@ -1,7 +1,7 @@
-package org.prog.homework;
+package old;
 
 import io.restassured.RestAssured;
-import org.prog.dto.ResultsDto;
+import org.prog.dtos.ResultsDto;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
