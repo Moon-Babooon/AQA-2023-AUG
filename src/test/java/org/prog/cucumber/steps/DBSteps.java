@@ -5,6 +5,7 @@ import io.cucumber.java.en.When;
 import lombok.SneakyThrows;
 import org.prog.dto.NameDto;
 import org.prog.dto.UserDto;
+import org.prog.util.BrowserType;
 import org.prog.util.DataHolder;
 
 import java.sql.*;
@@ -43,7 +44,7 @@ public class DBSteps {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db",
+            connection = DriverManager.getConnection(getSQLHost(),
                     "user", "password");
 
             stmt = connection.createStatement();
@@ -86,7 +87,7 @@ public class DBSteps {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db",
+            connection = DriverManager.getConnection(getSQLHost(),
                     "user", "password");
 
             stmt = connection.createStatement();
@@ -117,5 +118,14 @@ public class DBSteps {
                 connection.close();
             }
         }
+    }
+
+    private String getSQLHost() {
+        String type = System.getProperty("driver.type", "DOCKER");
+        BrowserType browserType = BrowserType.valueOf(type);
+        if (BrowserType.DOCKER.equals(browserType)) {
+            return "jdbc:mysql://mysql-db-1:3306/db";
+        }
+        return "jdbc:mysql://localhost:3306/db";
     }
 }
