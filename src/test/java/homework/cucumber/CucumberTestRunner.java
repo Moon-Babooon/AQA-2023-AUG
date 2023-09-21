@@ -1,6 +1,7 @@
 package homework.cucumber;
 
 import dataholder.DataHolder;
+import driver.WebDriverFactory;
 import homework.cucumber.steps.WebSteps;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -25,7 +26,7 @@ public class CucumberTestRunner extends AbstractTestNGCucumberTests {
     public static void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.setAcceptInsecureCerts(true);
-        driver = new ChromeDriver(options);
+        driver = WebDriverFactory.getDriver();
 
         WebSteps.rozetkaPage = new RozetkaPage(driver);
     }
