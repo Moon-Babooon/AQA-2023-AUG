@@ -1,6 +1,7 @@
 package homework.cucumber.steps;
 
 import dataholder.DataHolder;
+import driver.BrowserType;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import lombok.SneakyThrows;
@@ -28,7 +29,7 @@ public class DatabaseSteps {
         Statement statement = null;
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ProductDB", "testUsername", "testPassword");
+            connection = DriverManager.getConnection(getSQLHost(), "testUsername", "testPassword");
             statement = connection.createStatement();
             String queryBase = "DELETE FROM goods WHERE product_name='%s';";
             String query = String.format(queryBase, DataHolder.getInstance().get(productName));
@@ -51,7 +52,7 @@ public class DatabaseSteps {
         Statement statement = null;
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ProductDB", "testUsername", "testPassword");
+            connection = DriverManager.getConnection(getSQLHost(), "testUsername", "testPassword");
             statement = connection.createStatement();
             title = DataHolder.getInstance().get(title).toString();
             int price_value = Integer.parseInt(DataHolder.getInstance().get(price).toString());
@@ -86,7 +87,7 @@ public class DatabaseSteps {
 
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ProductDB", "testUsername", "testPassword");
+            connection = DriverManager.getConnection(getSQLHost(), "testUsername", "testPassword");
             statement = connection.createStatement();
             String productName = DataHolder.getInstance().get(title_value).toString();
             String queryBase = "SELECT price FROM goods WHERE product_name='%s';";
@@ -119,7 +120,7 @@ public class DatabaseSteps {
 
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ProductDB", "testUsername", "testPassword");
+            connection = DriverManager.getConnection(getSQLHost(), "testUsername", "testPassword");
             statement = connection.createStatement();
             String queryBase = "UPDATE goods SET price='%s' WHERE product_name='%s';";
             String product = DataHolder.getInstance().get(title).toString();
@@ -134,6 +135,16 @@ public class DatabaseSteps {
             if (statement != null)
                 statement.close();
         }
+    }
+
+    private String getSQLHost() {
+    // postgres-db-1
+        String type = System.getProperty("driver.type", "DOCKER");
+        BrowserType browserType = BrowserType.valueOf(type);
+        if (BrowserType.DOCKER.equals(browserType)) {
+            return "jdbc:postgresql://postgres-db-1:5432/ProductDB";
+        }
+        return "jdbc:postgresql://localhost:5432/ProductDB";
     }
 
 }
