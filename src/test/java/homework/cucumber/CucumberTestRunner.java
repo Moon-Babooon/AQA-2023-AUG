@@ -16,7 +16,8 @@ import org.testng.annotations.BeforeSuite;
 @CucumberOptions(features = "src/test/resources/features",
         plugin = {"pretty",
                 "json:target/cucumber-reports/Cucumber.json",
-                "html:target/cucumber-report.html"
+                "html:target/cucumber-report.html",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         })
 public class CucumberTestRunner extends AbstractTestNGCucumberTests {
 
