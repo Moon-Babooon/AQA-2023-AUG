@@ -13,8 +13,8 @@ Feature: DB and API integration tests
 
   Scenario Outline: Fetch and store users using API and DB using Data Holder
     Given i request <amount> users from API as "crowd_1"
-    Given i store "crowd_1" users in DB
-    When i pick random user from DB as "average_joe"
+    Given SPRING i store "crowd_1" users in DB
+    When SPRING i pick random user from DB as "average_joe"
     When i google for "average_joe"
     Then i can see "average_joe" name and last name in search result
     Examples:
@@ -22,4 +22,3 @@ Feature: DB and API integration tests
       | 2      |
       | 1      |
       | 3      |
-

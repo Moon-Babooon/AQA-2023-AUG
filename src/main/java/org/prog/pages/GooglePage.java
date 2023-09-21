@@ -6,7 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.prog.util.WebDriverFactory;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PreDestroy;
 import java.time.Duration;
 import java.util.List;
 
@@ -70,9 +73,14 @@ public class GooglePage extends AbstractPage {
         return driver.findElements(GOOGLE_SEARCH_RESULTS_HEADER_LOCATOR);
     }
 
-    public GoogleAppsMenu openAppsMenu(){
+    public GoogleAppsMenu openAppsMenu() {
         //TODO: add google apps click
         return googleAppsMenu;
+    }
+
+    @PreDestroy
+    private void tearDown() {
+        driver.quit();
     }
 
     private void executeSearch(boolean usingEnter, int buttonIndex) {

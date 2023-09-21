@@ -7,11 +7,15 @@ import org.prog.dto.NameDto;
 import org.prog.dto.UserDto;
 import org.prog.util.BrowserType;
 import org.prog.util.DataHolder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.*;
 import java.util.List;
 
 public class DBSteps {
+
+    @Autowired
+    private DataHolder dataHolder;
 
     public static UserDto randomUser;
 
@@ -22,7 +26,7 @@ public class DBSteps {
 
     @Given("i store {string} users in DB")
     public void storeUsersToDB(String alias) {
-        List<UserDto> userDtos = (List<UserDto>) DataHolder.getInstance().get(alias);
+        List<UserDto> userDtos = (List<UserDto>) dataHolder.get(alias);
         userDtos.forEach(this::storeUserToDB);
     }
 
@@ -33,7 +37,7 @@ public class DBSteps {
 
     @When("i pick random user from DB as {string}")
     public void pickRandomUser(String alias) {
-        DataHolder.getInstance().put(alias, getRandomUserFromDB());
+        dataHolder.put(alias, getRandomUserFromDB());
     }
 
     @SneakyThrows

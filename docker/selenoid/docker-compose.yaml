@@ -3,6 +3,7 @@
 #  docker network connect selenoid [containers]
 # docker network ps
 # docker network inspect [NETWORK ID]
+#  docker pull selenoid/firefox:latest
 #  docker pull selenoid/chrome:latest
 #  docker pull selenoid/video-recorder:latest-release
 version: '3'

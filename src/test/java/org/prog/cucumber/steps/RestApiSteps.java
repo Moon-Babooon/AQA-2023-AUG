@@ -5,10 +5,14 @@ import io.restassured.RestAssured;
 import org.prog.dto.ResultsDto;
 import org.prog.dto.UserDto;
 import org.prog.util.DataHolder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class RestApiSteps {
+
+    @Autowired
+    private DataHolder dataHolder;
 
     public static List<UserDto> userDtos;
 
@@ -27,7 +31,7 @@ public class RestApiSteps {
 
     @Given("i request {int} users from API as {string}")
     public void requestUsersFromApi(int amount, String alias) {
-        DataHolder.getInstance().put(alias,
+        dataHolder.put(alias,
                 RestAssured.given()
                         .header("Accept-Encoding", "UTF-8")
                         .queryParam("inc", "gender,name,nat")
